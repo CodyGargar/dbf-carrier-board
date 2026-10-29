@@ -1,0 +1,22 @@
+# KiCad backups, caches and per-user settings
+*-backups/
+*.kicad_prl
+*.bak
+*.bck
+*-bak
+_autosave-*
+~*.lck
+*.lck
+fp-info-cache
+\#auto_saved_files\#
+
+# Intermediate board from route_board.py
+*-routed-raw.kicad_pcb
+
+# Python
+__pycache__/
+*.pyc
+
+# OS junk
+.DS_Store
+Thumbs.db

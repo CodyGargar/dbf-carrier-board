@@ -18,8 +18,8 @@ Companion files: [pinout.csv](pinout.csv), [module-menu.md](module-menu.md), [bo
 
 | Item | Model | Notes |
 |---|---|---|
-| ESC | Castle Creations Phoenix Edge Lite 100 | Telemetry over the throttle wire (Castle Link Live): voltage, current, mAh, RPM, temperature. Turn Link Live on and disable the BEC with a Castle Link USB adapter. |
-| Receiver | RadioMaster ER-series ELRS PWM receiver (ER8 assumed) | 8 PWM outputs plus a 4-pin CRSF port. The board needs 7 backup channels (6 surfaces + throttle) and the 2 drop servos need 1, so an **ER8** fits only if both drop servos share one channel with a Y-cable. An ER6 is too small. |
+| ESC | Castle Creations Phoenix Edge 100 (CSE010010000): 34 V max, 100 A, 5 A BEC | Telemetry over the throttle wire (Castle Link Live): voltage, current, mAh, RPM, temperature. Turn Link Live on and set fixed throttle endpoints with a Castle Link USB adapter. The board leaves the + pin of the T column unconnected, so the ESC's BEC can't reach the servo rail. Also **pull the red wire out of the ESC's throttle plug** and insulate it, so the BEC is visibly disabled at tech inspection (rules 3.2.3). Keep the signal and black (ground) wires. 34 V max means an 8S LiPo (33.6 V full) is right at the limit. |
+| Receiver | RadioMaster ER8 2.4 GHz ELRS PWM receiver (confirmed 2026-11-07) | 8 PWM outputs plus a 4-pin CRSF port. The board needs 7 backup channels (6 surfaces + throttle) and the 2 drop servos need 1, so an **ER8** fits only if both drop servos share one channel with a Y-cable. An ER6 is too small. |
 | Servos | 6 control servos on the board, 2 drop servos on the receiver | |
 
 ## 2. How it connects
@@ -55,13 +55,15 @@ BEC is disabled.
 
 ## 4. ESC telemetry (Castle Link Live)
 
-The Phoenix Edge Lite answers each throttle pulse with a short reply on the same
+The Phoenix Edge answers each throttle pulse with a short reply on the same
 wire. The throttle channel goes through an open-drain buffer (74LVC1G07) with a 10k
-pull-up, and the Teensy times the replies on pin 28. That gives voltage, current,
+pull-up to 3.3 V, and the Teensy times the replies on pin 28. Castle's usual Link Live
+adapters use the same 10k value, but pull up to the receiver's + line instead; 3.3 V is
+used here because Teensy pins can't take 5 V. That gives voltage, current,
 mAh, RPM and temperature with no extra sensor in the motor wiring.
 
-To confirm on the bench before routing: the exact Link Live timing, and that the
-ESC accepts a 3.3 V pull-up. The optional power-module input stays as a backup.
+To confirm on the bench: the exact Link Live timing, and that the ESC accepts a
+3.3 V pull-up. If it doesn't, R9 can be changed by hand. The optional power-module input stays as a backup.
 
 ## 5. Power plan
 
@@ -82,8 +84,9 @@ Full table: [pinout.csv](pinout.csv). Servo outputs are on pins 2, 3, 4, 5, 6 an
 
 - **XT30 RX BATT IN:** receiver battery, from the external radio switch.
 - **FROM RECEIVER (3×8 header):** signal, +, GND for channels 1 to 6, T, 8.
-- **TO SERVOS + ESC (3×8 header):** same order. The ESC throttle lead goes on T.
+- **TO SERVOS + ESC (3×8 header):** same order. The ESC throttle lead goes on T. The T column's + pin is **not connected**, so the ESC's BEC can't feed the servo rail (rules 3.2.3). Don't plug a servo into T.
 - **JST-GH:** RX CRSF (4-pin), airspeed (4-pin), test radio (4-pin, testing only), battery V/I (6-pin, optional).
+- **RX CRSF (J6) pin order matches the ER8's CRSF port** (⊖, +, RX, TX), so a standard pin-1-to-pin-1 JST-GH cable works: pin 1 GND, pin 2 receiver + (not connected on the board), pin 3 Teensy TX (pin 14) to ER8 RX, pin 4 Teensy RX (pin 15) from ER8 TX. Never use a reversed cable: it would put 5 V on Teensy pin 15.
 
 ## 8. Event button
 
@@ -111,7 +114,7 @@ Put the board in a case: no exposed wiring is allowed.
 
 1. Board without a Teensy: put power on the XT30 from a bench supply (current-limited). Check the 5 V and 3.3 V test points. Confirm the receiver's PWM passes straight through to the servo outputs (watchdog off = receiver in control).
 2. Teensy on USB: scan the sensors, read the IMU.
-3. CRSF: sticks in, test telemetry on the radio.
+3. CRSF: before plugging in the Teensy, power the receiver, connect the CRSF cable and check with a meter that 5 V shows only on J6 pin 2. Then plug in the Teensy: sticks in, test telemetry on the radio.
 4. Heartbeat on: the Teensy drives the servos. Stop the code and confirm the receiver takes over within about 50 ms.
 5. Castle Link Live on the bench with **props off**.
 6. First flights with stabilization off (logging only), then turn it on at a safe altitude.
@@ -119,5 +122,5 @@ Put the board in a case: no exposed wiring is allowed.
 ## 11. Next steps
 
 1. Ask this year's Q&A to confirm that custom stabilization and the inline current sensor are allowed.
-2. Confirm the receiver model (ER8) and how the drop servos are wired.
+2. The receiver is confirmed as the ER8. Confirm how the drop servos are wired (Y-cable on ch8).
 3. Check the pin orders listed in README.md, then order from JLCPCB (see jlcpcb/ORDERING.md).

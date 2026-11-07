@@ -18,7 +18,7 @@ Companion files: [pinout.csv](pinout.csv), [module-menu.md](module-menu.md), [bo
 
 | Item | Model | Notes |
 |---|---|---|
-| ESC | Castle Creations Phoenix Edge 100 (CSE010010000): 34 V max, 100 A, 5 A BEC | Telemetry over the throttle wire (Castle Link Live): voltage, current, mAh, RPM, temperature. Turn Link Live on and set fixed throttle endpoints with a Castle Link USB adapter. The board leaves the + pin of the T column unconnected, so the ESC's BEC can't reach the servo rail. Also **pull the red wire out of the ESC's throttle plug** and insulate it, so the BEC is visibly disabled at tech inspection (rules 3.2.3). Keep the signal and black (ground) wires. 34 V max means an 8S LiPo (33.6 V full) is right at the limit. |
+| ESC | Castle Creations Phoenix Edge 100 (CSE010010000): 34 V max, 100 A, 5 A BEC | Telemetry over the throttle wire (Castle Link Live): voltage, current, mAh, RPM, temperature. Turn Link Live on and set fixed throttle endpoints with a Castle Link USB adapter. The board leaves the + pin of the T column unconnected, so the ESC's BEC can't reach the servo rail. Also **pull the red wire out of the ESC's throttle plug** and insulate it, so the BEC is visibly disabled at tech inspection (rules 3.2.3). Keep the signal and black (ground) wires. Motor pack: 6S LiPo (25.2 V full), well inside the 34 V rating. |
 | Receiver | RadioMaster ER8 2.4 GHz ELRS PWM receiver (confirmed 2026-11-07) | 8 PWM outputs plus a 4-pin CRSF port. The board needs 7 backup channels (6 surfaces + throttle) and the 2 drop servos need 1, so an **ER8** fits only if both drop servos share one channel with a Y-cable. An ER6 is too small. |
 | Servos | 6 control servos on the board, 2 drop servos on the receiver | |
 
@@ -69,7 +69,7 @@ To confirm on the bench: the exact Link Live timing, and that the ESC accepts a
 
 | Rail | Source | Feeds |
 |---|---|---|
-| Servo rail | Receiver battery through the XT30 (2S LiFe, 6.6 V, suggested) | Servos, receiver; wide copper |
+| Servo rail | Receiver battery through the XT30: 2S LiPo, 7.4 V, 1300 mAh (8.4 V full, so servos must be HV-rated) | Servos, receiver; wide copper |
 | 5 V | Pololu S7V7F5 module (2.7 to 11.8 V in) | Teensy VIN (through a Schottky diode), airspeed sensor |
 | 3V3_SENS | AP2112K-3.3 LDO | IMU, barometer, muxes, watchdog |
 

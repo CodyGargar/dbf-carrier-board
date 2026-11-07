@@ -34,10 +34,11 @@ Nothing blocks the JLCPCB order now. Still open:
 
 1. Confirm in this year's Q&A that a custom microcontroller stabilization system is allowed. Ask about the optional inline current sensor too (the ESC's own telemetry avoids it).
 2. Bench-test Castle Link Live with the board's 10k pull-up to 3.3 V (Castle's adapters use 10k to the receiver's +). If it doesn't work, R9 can be changed by hand.
-3. **Battery voltage:** the Phoenix Edge 100 is rated 34 V max. A full 8S LiPo is 33.6 V, which is right at the limit. Consider 7S if the motor allows it.
+3. **Servo voltage:** the receiver pack is a 2S LiPo (8.4 V fully charged) and feeds the servos directly. **Every servo must be rated HV (8.4 V).** Also confirm the ER8 accepts 8.4 V on its servo pins. If any servo is 6 V only, switch to a 2S LiFe (7.2 V full) pack.
 4. Confirm how the 2 drop servos are wired (Y-cable on receiver channel 8).
 
 Done:
+- **Batteries chosen (2026-11-07):** motor pack is a Turnigy nano-tech 6S LiPo, 22.2 V, 3300 mAh (73 Wh, under the 100 Wh limit; 25.2 V full, well under the ESC's 34 V). Receiver pack is a 2S LiPo, 7.4 V, 1300 mAh (9.6 Wh).
 - **Pololu S7V7F5 pin order checked:** GND is the middle pin, with VIN and VOUT on the ends (two independent CAD libraries for this module agree; Pololu lists them as VIN, GND, VOUT). The board matches. The only way to get it wrong is to put the module in backwards, so the board now has **VIN / GND / OUT** printed under the pads: VIN goes in the square pad.
 - **Buzzer + pad checked:** two footprints drawn from the CMT-8504 datasheet (one marks the pads P and N, one cites the datasheet's rev 09/11/2024 land pattern) both put **+ at the top-left pad and − at the bottom-left**, with the right pair as dummy pads. KiCad's pad 1 is the same top-left pad, and the board wires it to +. Correct as is.
 - Receiver confirmed as a **RadioMaster ER8 2.4 GHz**. Its CRSF port order (⊖, +, RX, TX) was checked from a photo, and the board now matches it.

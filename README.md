@@ -3,7 +3,7 @@
 ![Routed board](kicad/board-top.png)
 
 Everything for the Teensy 4.1 board that stabilizes the plane, sends telemetry to the pilot's radio and logs every flight.
-Status: **routed and order-ready (Rev B)**. Every connection is routed, the design check has no electrical errors, and the JLCPCB files are in [jlcpcb/](jlcpcb/). Two pin orders still need a check before you pay (see Open questions).
+Status: **routed and order-ready (Rev B)**. Every connection is routed, the design check has no electrical errors, and the JLCPCB files are in [jlcpcb/](jlcpcb/). All pin orders are checked (see Open questions).
 
 | File | What it is |
 |---|---|
@@ -30,18 +30,16 @@ Online versions:
 
 ## Open questions
 
-Before paying for the JLCPCB order:
-1. Check the pin order printed on your Pololu S7V7F5 (the board assumes VIN, GND, VOUT).
-2. Check the buzzer's + pad on the CMT-8504 drawing (the board uses the pad KiCad marks with +).
+Nothing blocks the JLCPCB order now. Still open:
 
-Not blocking the order:
-
-3. Confirm in this year's Q&A that a custom microcontroller stabilization system is allowed. Ask about the optional inline current sensor too (the ESC's own telemetry avoids it).
-4. Bench-test Castle Link Live with the board's 10k pull-up to 3.3 V (Castle's adapters use 10k to the receiver's +). If it doesn't work, R9 can be changed by hand.
-5. **Battery voltage:** the Phoenix Edge 100 is rated 34 V max. A full 8S LiPo is 33.6 V, which is right at the limit. Consider 7S if the motor allows it.
-6. Confirm how the 2 drop servos are wired (Y-cable on receiver channel 8).
+1. Confirm in this year's Q&A that a custom microcontroller stabilization system is allowed. Ask about the optional inline current sensor too (the ESC's own telemetry avoids it).
+2. Bench-test Castle Link Live with the board's 10k pull-up to 3.3 V (Castle's adapters use 10k to the receiver's +). If it doesn't work, R9 can be changed by hand.
+3. **Battery voltage:** the Phoenix Edge 100 is rated 34 V max. A full 8S LiPo is 33.6 V, which is right at the limit. Consider 7S if the motor allows it.
+4. Confirm how the 2 drop servos are wired (Y-cable on receiver channel 8).
 
 Done:
+- **Pololu S7V7F5 pin order checked:** GND is the middle pin, with VIN and VOUT on the ends (two independent CAD libraries for this module agree; Pololu lists them as VIN, GND, VOUT). The board matches. The only way to get it wrong is to put the module in backwards, so the board now has **VIN / GND / OUT** printed under the pads: VIN goes in the square pad.
+- **Buzzer + pad checked:** two footprints drawn from the CMT-8504 datasheet (one marks the pads P and N, one cites the datasheet's rev 09/11/2024 land pattern) both put **+ at the top-left pad and − at the bottom-left**, with the right pair as dummy pads. KiCad's pad 1 is the same top-left pad, and the board wires it to +. Correct as is.
 - Receiver confirmed as a **RadioMaster ER8 2.4 GHz**. Its CRSF port order (⊖, +, RX, TX) was checked from a photo, and the board now matches it.
 
 ## ESC setup (Castle Phoenix Edge 100)

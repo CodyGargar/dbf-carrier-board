@@ -106,7 +106,7 @@ Put the board in a case: no exposed wiring is allowed.
 
 **Small parts added during routing:** R10 1k (buzzer transistor base), R12 18 Ω (limits buzzer current to about 150 mA), D4 1N4148W (buzzer flyback), R11 100k (holds the heartbeat low while the Teensy boots, so the receiver keeps control), C8 to C11 100 nF (one per logic chip), C12 2.2 µF (IMU). Watchdog timing is R8 100k with C7 0.47 µF, about 47 ms.
 
-**Pin sources:** TI SN74LVC157A (SCAS292S), SN74LVC1G123 (SCES586E), SN74LVC1G07 (SCES296AG), Diodes AP2112K (DS39724), TDK ICM-42688-P (DS-000347), Infineon DPS368, PJRC Teensy 4.1 pinout card, Holybro PM02 and Matek ASPD-4525 port docs. The Pololu S7V7F5 has 3 pins, not 4.
+**Pin sources:** TI SN74LVC157A (SCAS292S), SN74LVC1G123 (SCES586E), SN74LVC1G07 (SCES296AG), Diodes AP2112K (DS39724), TDK ICM-42688-P (DS-000347), Infineon DPS368, PJRC Teensy 4.1 pinout card, Holybro PM02 and Matek ASPD-4525 port docs. The Pololu S7V7F5 has 3 pins, not 4: VIN, GND (middle), VOUT. The silkscreen labels them; VIN is the square pad. CMT-8504 buzzer: + is the top-left pad (pad 1), − bottom-left, right pair are dummy pads (checked 2026-11-07 against two datasheet-derived footprints).
 
 **USB plus battery:** the Teensy joins VIN and USB power. When the receiver battery is on and the laptop is plugged in, the board's 5 V can feed back into the laptop's USB port. That is usually harmless, but PJRC recommends cutting the VIN/VUSB pads on the Teensy's underside if both will often be connected.
 

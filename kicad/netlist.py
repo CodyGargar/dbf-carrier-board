@@ -10,13 +10,13 @@ def T(pin):
     raise KeyError(pin)
 
 # Pololu S7V7F5 header order (U5 pads 1..4)
-U5_PINS = {'VIN': '1', 'GND': '2', 'VOUT': '3'}   # 3-pin module; order VIN-GND-VOUT to confirm on the module silkscreen
+U5_PINS = {'VIN': '1', 'GND': '2', 'VOUT': '3'}   # 3-pin module; GND in the middle (checked 2026-11-07). VIN = square pad; silkscreen labels added in finish_board.py
 # SN74LVC1G123 (DCU): 1 A, 2 B, 3 CLR, 4 GND, 5 Q, 6 Cext, 7 Rext/Cext, 8 VCC
 # SN74LVC157A (PW): 1 A/B, 2 1A, 3 1B, 4 1Y, 5 2A, 6 2B, 7 2Y, 8 GND, 9 3Y, 10 3B, 11 3A, 12 4Y, 13 4B, 14 4A, 15 G, 16 VCC
 MUX = [('1', '2', '3', '4'), ('2', '5', '6', '7'), ('3', '11', '10', '9'), ('4', '14', '13', '12')]  # section, A, B, Y
 # ICM-42688-P: 1 SDO, 4 INT1, 5 VDDIO, 6 GND, 8 VDD, 9 FSYNC, 12 CS, 13 SCLK, 14 SDI; 2,3,10,11 NC, 7 RESV->GND
 # DPS368: 1 GND, 2 CSB, 3 SDI, 4 SCK, 5 SDO, 6 VDDIO, 7 GND, 8 VDD
-# Buzzer CMT-8504-100-SMT: KiCad Fab layer marks pad 1 as +; pads 3/4 are dummy pads
+# Buzzer CMT-8504-100-SMT: pad 1 (top-left) is +, pad 2 (bottom-left) is -, pads 3/4 are dummy pads (checked 2026-11-07)
 BZ_POS, BZ_NEG = '1', '2'
 
 NETS = {

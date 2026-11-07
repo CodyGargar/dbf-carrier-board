@@ -11,6 +11,7 @@ Files in this folder:
 3. Turn on **PCB Assembly**, top side, Economic if it allows every part, otherwise Standard. Assemble 2 of the 5.
 4. Upload `bom-jlcpcb.csv` and `cpl-jlcpcb.csv`. The LCSC part column is empty on purpose: JLCPCB's matcher will suggest parts from the part names. Check each match against the name and the package. For the resistors and capacitors any basic part of the same value and size is fine.
 5. On the placement preview, check that each chip's pin-1 dot lines up with the marker on the board. JLCPCB's rotation sometimes differs from KiCad's. Fix any that are turned with the rotate button. Last time these needed fixing: **U4, Q1 and U9 turned 180°; U6, U7 and U8 turned 90° clockwise**. JLCPCB resets them every time you upload new files, so set them again. Turn on **Confirm Parts Placement** as a backstop.
+   - Buzzer BZ1: its **+** laser mark should sit at the **top-left** pad (next to the + on the silkscreen).
    - SW1: use TL3342F260QG (LCSC C2886894) if the F160 is out of stock.
 6. Parts JLCPCB may not stock (often the ICM-42688-P, DPS368, CMT-8504 buzzer or JST-GH connectors): choose "global sourcing" or leave them out and solder them yourself.
 

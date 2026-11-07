@@ -25,6 +25,13 @@ for d in b.GetDrawings():
     if d.GetClass() == 'PCB_TEXT' and d.GetTextHeight() < mm(0.8):
         d.SetTextSize(pcbnew.VECTOR2I(mm(0.8), mm(0.8))); d.SetTextThickness(mm(0.12))
 
+# pin names under the Pololu S7V7F5 (U5) so the module goes in the right way round:
+# VIN on the square pad, GND in the middle, VOUT on the right (matches the labels on the module's back)
+for t, x in (('VIN', 9.5), ('GND', 12.04), ('OUT', 14.58)):
+    s = pcbnew.PCB_TEXT(b); s.SetText(t); s.SetLayer(pcbnew.F_SilkS)
+    s.SetPosition(pcbnew.VECTOR2I(mm(OX + x), mm(OY + 32.0)))
+    s.SetTextSize(pcbnew.VECTOR2I(mm(0.8), mm(0.8))); s.SetTextThickness(mm(0.12)); b.Add(s)
+
 # two plane-escape vias of the same net that landed on top of each other: keep one, bridge the other
 vias = [t for t in b.GetTracks() if t.GetClass() == 'PCB_VIA']
 gone = set()

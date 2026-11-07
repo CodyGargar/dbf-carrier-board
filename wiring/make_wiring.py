@@ -28,7 +28,7 @@ py=905; ph=110
 box(60,py,250,ph,'8S LiPo 29.6 V','≤ 100 Wh propulsion pack',stroke=PWR_M)
 box(380,py,200,ph,'Fuse','≤ 100 A',stroke=PWR_M)
 box(650,py,220,ph,'Arming plug','external, separate|from radio switch',stroke=PWR_M)
-box(930,py,370,ph,'Castle Phoenix Edge Lite 100','ESC · BEC disabled|Link Live telemetry ON',stroke=PWR_M,tw=22)
+box(930,py,370,ph,'Castle Phoenix Edge 100','34 V max · BEC red wire pulled|Link Live telemetry ON',stroke=PWR_M,tw=22)
 box(1370,py,220,ph,'Main motor','~500 kV',stroke=PWR_M)
 for a,b in [(310,380),(580,650),(870,930),(1300,1370)]: wire([(a,py+ph/2),(b-4,py+ph/2)],PWR_M,w=8)
 # --- receiver battery + switch (left)

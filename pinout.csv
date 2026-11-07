@@ -5,7 +5,7 @@ Teensy pin,Function,Bus,Connects to,Notes
 5,Servo out CH4,PWM,Mux U6 A4,Stabilized surface (e.g. rudder)
 6,Servo out CH5,PWM,Mux U7 A1,Stabilized surface (e.g. left flap)
 9,Servo out CH6,PWM,Mux U7 A2,Stabilized surface (e.g. right flap)
-22,Throttle out CH7 (T),PWM,Mux U7 A3,Through open-drain buffer U9 to ESC; Castle Link Live
+22,Throttle out CH7 (T),PWM,Mux U7 A3,Through open-drain buffer U9 to ESC; Castle Link Live. T column + pin not connected (ESC BEC isolated)
 23,Spare out CH8,PWM,Mux U7 A4,Spare
 24,Watchdog heartbeat,GPIO out,U8 74LVC1G123,Toggle from main loop; stops = receiver takes over
 25,Failover status,GPIO in,U8 Q output,High = Teensy in control
@@ -17,8 +17,8 @@ Teensy pin,Function,Bus,Connects to,Notes
 12,IMU MISO,SPI,ICM-42688-P,
 13,IMU SCK,SPI,ICM-42688-P,
 30,IMU INT,GPIO in,ICM-42688-P,Data-ready interrupt
-14,Receiver CRSF TX3,Serial3,J6,Telemetry to radio
-15,Receiver CRSF RX3,Serial3,J6,Sticks from radio
+14,Receiver CRSF TX3,Serial3,J6 pin 3,Telemetry to radio; to ER8 RX
+15,Receiver CRSF RX3,Serial3,J6 pin 4,Sticks from radio; from ER8 TX. J6 pin 1 GND; pin 2 receiver +5V not connected
 16,Airspeed SCL1,Wire1,J4,
 17,Airspeed SDA1,Wire1,J4,
 18,Baro SDA,Wire,DPS368,

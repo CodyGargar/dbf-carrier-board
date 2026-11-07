@@ -26,10 +26,12 @@ NETS = {
             ('U6', '8'), ('U6', '15'), ('U7', '8'), ('U7', '15'), ('C8', '1'), ('C9', '2'),
             ('U8', '4'), ('U8', '1'), ('C10', '2'), ('R11', '2'), ('U9', '3'), ('C11', '1'),
             ('SW1', '2'), ('D2', '1'), ('D3', '1'), ('Q1', '2'),
-            ('J4', '4'), ('J6', '4'), ('J11', '4'), ('J7', '5'), ('J7', '6'), ('TP4', '1')]
+            ('J4', '4'), ('J6', '1'), ('J11', '4'), ('J7', '5'), ('J7', '6'), ('TP4', '1')]
            + [('J23', str(i)) for i in range(1, 9)] + [('J33', str(i)) for i in range(1, 9)],
     'VSERVO': [('J12', '2'), ('U5', U5_PINS['VIN'])]
-              + [('J22', str(i)) for i in range(1, 9)] + [('J32', str(i)) for i in range(1, 9)],
+              + [('J22', str(i)) for i in range(1, 9)]
+              # J32 pin 7 (ESC 'T' column +) left unconnected: the ESC's BEC can never reach the servo rail (rules 3.2.3)
+              + [('J32', str(i)) for i in range(1, 9) if i != 7],
     '+5V': [('U5', U5_PINS['VOUT']), ('D1', '2'), ('TP1', '1')],
     'VIN': [T('VIN'), ('D1', '1'), ('U4', '1'), ('U4', '3'), ('C1', '1'), ('J4', '1'), ('J11', '1'),
             ('R12', '1'), ('TP2', '1')],
@@ -49,8 +51,10 @@ NETS = {
     'IMU_MISO': [T(12), ('U2', '1')],
     'IMU_INT': [T(30), ('U2', '4')],
     # radios
-    'CRSF_TX': [T(14), ('J6', '2')],
-    'CRSF_RX': [T(15), ('J6', '3')],
+    # J6 matches the RadioMaster ER8 CRSF port (GND, +5V, RX, TX) pin for pin, so a pin-1-to-pin-1 JST-GH cable works.
+    # J6 pin 2 (receiver +5V) is left unconnected.
+    'CRSF_TX': [T(14), ('J6', '3')],
+    'CRSF_RX': [T(15), ('J6', '4')],
     'TEL_TX': [T(1), ('J11', '2')],
     'TEL_RX': [T(0), ('J11', '3')],
     # analog battery sense from the optional power module

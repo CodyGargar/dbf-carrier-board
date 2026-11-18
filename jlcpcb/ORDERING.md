@@ -12,8 +12,10 @@ Files in this folder:
 4. Upload `bom-jlcpcb.csv` and `cpl-jlcpcb.csv`. The LCSC part column is empty on purpose: JLCPCB's matcher will suggest parts from the part names. Check each match against the name and the package. For the resistors and capacitors any basic part of the same value and size is fine.
 5. On the placement preview, check that each chip's pin-1 dot lines up with the marker on the board. JLCPCB's rotation sometimes differs from KiCad's. Fix any that are turned with the rotate button. Last time these needed fixing: **U4, Q1 and U9 turned 180°; U6, U7 and U8 turned 90° clockwise**. JLCPCB resets them every time you upload new files, so set them again. Turn on **Confirm Parts Placement** as a backstop.
    - Buzzer BZ1: its **+** laser mark should sit at the **top-left** pad (next to the + on the silkscreen).
-   - SW1: use TL3342F260QG (LCSC C2886894) if the F160 is out of stock.
-6. Parts JLCPCB may not stock (often the ICM-42688-P, DPS368, CMT-8504 buzzer or JST-GH connectors): choose "global sourcing" or leave them out and solder them yourself.
+   - SW1: TL3342F450QG (LCSC C2886897). The F160 and F260 were out of stock on 2026-11-18; any TL3342 fits the footprint.
+   - U2: IIM-42652 (LCSC C2988404). The ICM-42688-P (C1850418) is sold out. Do **not** use the Tokmas or HXY "ICM-42688-P" look-alikes: the Tokmas one has a different register map.
+   - PCB build time: pick **"3 days (PCBA Only)"**. The default "2-3 days" adds about $66.
+6. Parts JLCPCB may not stock (often the IMU, DPS368, CMT-8504 buzzer or JST-GH connectors): choose "global sourcing" or leave them out and solder them yourself.
 
 ## Not soldered by JLCPCB (you solder these)
 Teensy sockets (J1, J2), the Pololu 5 V regulator module (U5, 3-pin), the two 3 × 8 servo headers (J21 to J23, J31 to J33) and the XT30 battery plug (J12).

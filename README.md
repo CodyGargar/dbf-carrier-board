@@ -28,6 +28,13 @@ Online versions:
 - **ESC is the Castle Phoenix Edge 100** (34 V, 100 A, 5 A BEC), not the Edge Lite. The **+ pin of the T column on TO SERVOS + ESC is now unconnected**, so the ESC's BEC can never feed the servo rail, even if its red wire is left in.
 - Rerouted, design check rerun (0 unconnected pads, no new warnings), JLCPCB files regenerated. **Re-upload the Gerber zip, BOM and CPL to JLCPCB before paying, and set the part rotations again** (see [jlcpcb/ORDERING.md](jlcpcb/ORDERING.md)).
 
+## Changes on 2026-11-18 (stock check before paying)
+
+- **IMU is now the TDK IIM-42652** (LCSC C2988404, about $8.61) instead of the ICM-42688-P. The ICM-42688-P sold out at JLCPCB and DigiKey (DigiKey expects stock in August 2027). The IIM-42652 is TDK's industrial version of the same chip family: same 2.5 × 3 mm LGA-14 package and the same pins on everything this board connects (SPI, INT1, power). No board change was needed. **Firmware:** its WHO_AM_I value is 0x6F (the ICM-42688-P reads 0x47), so a driver that checks the ID must accept 0x6F. ArduPilot's Invensense v3 driver handles both.
+- The Tokmas "ICM-42688-P" that JLCPCB stocks was rejected. It has the same pins, but a different register map (accel at 0x00, gyro at 0x06), so normal ICM-42688 code won't run on it.
+- **SW1** is now the TL3342F450QG (same footprint, a stiffer 4.5 N click).
+- JLCPCB order updated in the cart: $30.01 for the boards plus $117.88 for assembly, so **$147.89 before shipping**. Rotations were reset again (U4, Q1, U9 180°; U6, U7, U8 90° clockwise).
+
 ## Open questions
 
 Nothing blocks the JLCPCB order now. Still open:

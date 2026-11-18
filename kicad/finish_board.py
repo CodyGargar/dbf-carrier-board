@@ -86,9 +86,9 @@ shutil.make_archive(zp, 'zip', g)
 
 # assembly: factory places every SMD part; through-hole parts are hand-soldered
 MPN = {
-    'U2': 'ICM-42688-P', 'U3': 'DPS368XTSA1', 'U4': 'AP2112K-3.3TRG1', 'U6': 'SN74LVC157APWR', 'U7': 'SN74LVC157APWR',
+    'U2': 'IIM-42652', 'U3': 'DPS368XTSA1', 'U4': 'AP2112K-3.3TRG1', 'U6': 'SN74LVC157APWR', 'U7': 'SN74LVC157APWR',
     'U8': 'SN74LVC1G123DCUR', 'U9': 'SN74LVC1G07DCKR', 'Q1': 'MMBT3904', 'D1': 'SS24 (SMA)', 'D2': 'Green LED 0603',
-    'D3': 'Red LED 0603', 'D4': '1N4148W (SOD-123)', 'SW1': 'TL3342F160QG', 'BZ1': 'CMT-8504-100-SMT-TR',
+    'D3': 'Red LED 0603', 'D4': '1N4148W (SOD-123)', 'SW1': 'TL3342F450QG', 'BZ1': 'CMT-8504-100-SMT-TR',
     'J4': 'SM04B-GHS-TB(LF)(SN)', 'J6': 'SM04B-GHS-TB(LF)(SN)', 'J11': 'SM04B-GHS-TB(LF)(SN)', 'J7': 'SM06B-GHS-TB(LF)(SN)',
 }
 VAL = {'C1': '10uF 25V X5R 0805', 'C2': '10uF 25V X5R 0805', 'C12': '2.2uF X7R 0603', 'C7': '0.47uF X7R 0603 (watchdog timing)', 'C5': '10nF X7R 0603',

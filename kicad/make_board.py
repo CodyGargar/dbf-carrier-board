@@ -59,7 +59,7 @@ fp('Capacitor_SMD','C_0603_1608Metric','C6','100nF',22,38.3,0)
 for i,(r,v) in enumerate([('R2','4.7k SDA'),('R3','4.7k SCL'),('R4','2.2k SDA1'),('R5','2.2k SCL1')]):
     fp('Resistor_SMD','R_0603_1608Metric',r,v,19.0+i*2.0,41.8,90)
 text('BARO',23.6,31.4,0.9); text('(foam)',23.6,32.7,0.6)
-fp('Package_LGA','Bosch_LGA-14_3x2.5mm_P0.5mm','U2','ICM-42688-P',33,37,0)
+fp('Package_LGA','Bosch_LGA-14_3x2.5mm_P0.5mm','U2','IIM-42652',33,37,0)
 fp('Capacitor_SMD','C_0603_1608Metric','C4','100nF',30,35,90)
 fp('Capacitor_SMD','C_0603_1608Metric','C5','100nF',36,35,90)
 fp('Resistor_SMD','R_0603_1608Metric','R1','10k CS pull-up',33,40.4,0)

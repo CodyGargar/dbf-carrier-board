@@ -49,7 +49,7 @@ out.append(f'<rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="22" fill="#1
 label(bx+30,by+44,'OUR BOARD',c='#D9AE55',s=22,anchor='start',bold=True); label(bx+bw-30,by+44,'Logger + Stabilizer, Rev B',c='#F4F2EA',s=22,anchor='end',bold=True)
 def ib(x,y,w,h,t,s): box(x,y,w,h,t,s,fill='#1C3A2A',stroke='#D9AE55',tc='#F4F2EA',sc='#BFD3C6',tw=20,sw=15,lw=2)
 ib(bx+30,by+70,280,100,'Teensy 4.1','stabilization code|microSD flight log')
-ib(bx+330,by+70,280,100,'IMU + barometer','gyro/accel ICM-42688-P|altitude DPS368')
+ib(bx+330,by+70,280,100,'IMU + barometer','gyro/accel IIM-42652|altitude DPS368')
 ib(bx+30,by+190,280,90,'5 V + 3.3 V regulators','fed from the XT30 rail')
 ib(bx+330,by+190,280,90,'Failover switch','2× mux + watchdog|→ receiver in ~50 ms')
 ib(bx+30,by+300,180,80,'XT30 in','receiver battery')

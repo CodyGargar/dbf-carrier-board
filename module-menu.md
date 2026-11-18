@@ -8,7 +8,7 @@ Mark each row **Keep** or **Drop**. "Needed" means the goals above don't work wi
 | # | Module | What it does | Status |
 |---|---|---|---|
 | 1 | Teensy 4.1 | The brain. Runs stabilization, logging, telemetry. Built-in microSD for flight logs | Needed |
-| 2 | ICM-42688-P IMU (gyro + accelerometer) | Senses roll, pitch, yaw rates. This is what stabilization reacts to | Needed |
+| 2 | IIM-42652 IMU (gyro + accelerometer; replaced the ICM-42688-P) | Senses roll, pitch, yaw rates. This is what stabilization reacts to | Needed |
 | 3 | 5 V regulator (Pololu S7V7F5) + 3.3 V regulator | Powers the Teensy and sensors from the receiver battery | Needed |
 | 4 | ELRS receiver (RadioMaster ER8), off board | Gets your sticks over CRSF and sends telemetry back to the radio | Needed |
 | 5 | DPS368 barometer | Altitude and climb rate on the radio and in the log | Optional (cheap, ~$4) |
